@@ -30,4 +30,5 @@ http://localhost:4321/
 ```
 
 We can copy this address to the address bar of a browser such as Edge/Google.  
+Enter!  
 Now, we can see the webpage contents rendered.

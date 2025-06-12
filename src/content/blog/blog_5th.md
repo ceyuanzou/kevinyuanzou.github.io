@@ -1,11 +1,11 @@
 ---
-title: 5th
-description: None
-pubDate: June 11 2025
+title: Markdown Syntax
+description: learn how to use Markdown to write!
+pubDate: June 9 2025
 categories:
   - Study
 tags:
-  - Casual notes
+  - Markdown
 badge: By Kevin ZOU
 ---
 

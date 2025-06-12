@@ -1,54 +1,120 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import PostCard from "@components/PostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseCard from "@components/BaseCard.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
 import { Icon } from "astro-icon/components";
-import MainCard from "@/components/MainCard.astro";
-import FeatureCard from "@/components/mdx/FeatureCard.astro";
-import GitHubStats from "@/components/mdx/GitHubStats.astro";
+import { getCollection } from "astro:content";
 
+// 全部博客，按日期排序
+const allBlogs = (await getCollection('blog'))
+  .filter(blog => blog.data.pubDate)
+  .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 
+// 最近三篇
+const blogs = allBlogs.slice(0, 3);
+
+// 高亮区三篇
+const targetTitles = ["Preview Web Contents Locally 本地实时预览", "Push folder to Github 同步文件夹", "Markdown Syntax"];
+const highlightBlogs = allBlogs.filter(blog => targetTitles.includes(blog.data.title));
+
+// 优化取法：没有就传 undefined
+function getWord(blog) {
+  const val = blog.remarkPluginFrontmatter?.totalCharCount;
+  return typeof val === "number" && val > 0 ? val : undefined;
+}
+function getTime(blog) {
+  const val = blog.remarkPluginFrontmatter?.readingTime;
+  // 有些插件输出可能是小数
+  return typeof val === "number" && val > 0 ? Math.round(val) : undefined;
+}
 ---
 
 <BaseLayout title="Home">
-  <MainCard>
 
-    <div class="space-y-6">
-      <!-- Hello Section -->
-      <section class="py-6">
-        <div class="flex flex-col items-center text-center">
-          <h1
-            class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-loose"
-          >
-            🌟 Hello! Welcome to Kevin ZOU's Blogs!
-          </h1>
-          <p class="text-xl text-base-content/80 max-w-3xl">
-            Here, I will share my learning, experiences, and thinking!
-          </p>
+  <!-- 卡片1：Hello Section -->
+  <BaseCard>
+    <section class="py-6">
+      <div class="flex flex-col items-center text-center">
+        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-loose">
+          Hello! Welcome to Kevin ZOU's Blogs!
+        </h1>
+        <p class="text-xl text-base-content/80 max-w-3xl">
+          Here, I will share my learning, experiences, and thinking!
+        </p>
+      </div>
+    </section>
+  </BaseCard>
 
-        </div>
-      </section>
+  <!-- 卡片2：Recent Updates -->
+  <BaseCard>
+    <section class="py-6">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
+        <span>Recent Updates:</span>
+      </h2>
+      <CardGroup cols="1" gap="6">
+        {
+          blogs.map((blog) => (
+            <PostCard
+              title={blog.data.title}
+              image={blog.data.image}
+              description={blog.data.description}
+              url={`/blog/${blog.slug}`}
+              pubDate={blog.data.pubDate}
+              badge={blog.data.badge}
+              categories={blog.data.categories}
+              tags={blog.data.tags}
+              word={getWord(blog)}
+              time={getTime(blog)}
+            />
+          ))
+        }
+      </CardGroup>
+    </section>
+  </BaseCard>
 
-      <!-- Recent Updates: -->
-      <section class="py-6">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
-          <span>Recent Updates:</span>
-        </h2>
+  <!-- 卡片3：Highlight Blogs -->
+  <BaseCard>
+    <section class="py-6">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <Icon name="lucide:star" class="w-6 h-6 text-yellow-400" />
+        <span>Highlight Blogs:</span>
+      </h2>
+      <CardGroup cols="1 md:cols-3" gap="6">
+        {
+          highlightBlogs.length > 0
+            ? highlightBlogs.map((blog) => (
+                <PostCard
+                  title={blog.data.title}
+                  image={blog.data.image}
+                  description={blog.data.description}
+                  url={`/blog/${blog.slug}`}
+                  pubDate={blog.data.pubDate}
+                  badge={blog.data.badge}
+                  categories={blog.data.categories}
+                  tags={blog.data.tags}
+                  word={getWord(blog)}
+                  time={getTime(blog)}
+                />
+              ))
+            : (
+              <div class="text-base-content/60 text-center col-span-3">No highlight blogs yet.</div>
+            )
+        }
+      </CardGroup>
+    </section>
+  </BaseCard>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <FeatureCard
-            title="Responsive Design"
-            description="Fully responsive design that looks great on all devices from mobile to desktop."
-            icon="lucide:smartphone"
-            color="oklch(0.7 0.2 30)"
-          />
-        </div>
-      </section>
+  <!-- 卡片4：View ALL Blogs -->
+  <BaseCard>
+    <section class="py-6">
+      <div class="flex justify-center">
+        <a href="/blog" class="text-primary underline text-lg font-semibold flex items-center gap-2">
+          View ALL Blogs! <Icon name="lucide:arrow-right" class="w-8 h-8" />
+        </a>
+      </div>
+    </section>
+  </BaseCard>
 
-      <!-- Highlight Blogs -->
-      <section class="py-6">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
-          <span>Highlight Blogs:</span>
-        </h2>
-  </MainCard>
 </BaseLayout>

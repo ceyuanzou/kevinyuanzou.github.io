@@ -34,7 +34,7 @@ site:
         - id: Life
           text: Life
           href: /blog/category/Life
-          svg: "material-symbols:unknown-document-outline-rounded"
+          svg: "material-symbols:deployed-code-outline"
           target: _self
         - id: Study
           text: Study
