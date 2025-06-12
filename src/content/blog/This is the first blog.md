@@ -1,14 +1,30 @@
 ---
 title: First Blog!
-description: The first blog.
-pubDate: June 11 2025
+description: This is my first blog.
+pubDate: June 12 2025
 categories:
-  - Examples
+  - My life
 tags:
-  - Mathematics
+  - Yours
 badge: LaTeX
 ---
 
-This document serves as a test for rendering mathematical formulas in Markdown using `$$` delimiters.
 
 # This is the first blog!
+
+This document serves as a test for rendering mathematical formulas.
+This document serves as a test for rendering mathematical formulas.
+This document serves as a test for rendering mathematical formulas.
+
+This document serves as a test for rendering mathematical formulas.
+This document serves as a test for rendering mathematical formulas.
+
+This document serves as a test for rendering mathematical formulas.
+
+
+## Who know your name?
+
+This document serves as a test for rendering mathematical formulas.
+This document serves as a test for rendering mathematical formulas.
+This document serves as a test for rendering mathematical formulas.
+

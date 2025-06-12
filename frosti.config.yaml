@@ -2,7 +2,7 @@
 site:
   tab: Kevin ZOU # 浏览器标签栏上显示的文本
   title: Kevin ZOU's Blogs # 网站的标题
-  description: Personal Blogs! # 网站的描述，用于SEO等
+  description: Kevin ZOU's Blogs # 网站的描述，用于SEO等
   language: en # 网站的语言，例如 "en" 是英文
   favicon: /favicon-16x16.png # 网站的图标，用于浏览器标签栏和其他地方显示
   theme: # 更多主题 https://daisyui.com/docs/themes/
@@ -18,11 +18,7 @@ site:
       href: / # 菜单项链接的地址
       svg: "material-symbols:home-outline-rounded"
       target: _self
-    - id: about
-      text: About
-      href: /about
-      svg: "material-symbols:info-outline-rounded"
-      target: _self
+      
     - id: blog
       text: Blogs
       href: /blog
@@ -46,25 +42,33 @@ site:
           target: _self
         # 子菜单项配置
     - id: project
-      text: Project
+      text: Research
       href: /project
       svg: "material-symbols:code-blocks-outline"
       target: _self
-    - id: friend
-      text: Friends
-      href: /friend
-      svg: "material-symbols:supervisor-account-outline-rounded"
+
+    - id: about
+      text: About me
+      href: /about
+      svg: "material-symbols:info-outline-rounded"
       target: _self
-    - id: contact
-      text: Contact
-      href: "mailto:contact.evesunmaple@outlook.com"
-      target: _blank # 在新标签页打开
-      svg: "material-symbols:attach-email-outline-rounded"
+
+    # - id: friend
+    #   text: Friends
+    #   href: /friend
+    #   svg: "material-symbols:supervisor-account-outline-rounded"
+    #   target: _self
+
+    # - id: contact
+    #   text: Contact
+    #   href: "mailto:contact.evesunmaple@outlook.com"
+    #   target: _blank # 在新标签页打开
+    #   svg: "material-symbols:attach-email-outline-rounded"
 
 # 用户的个人信息
 user:
   name: Kevin ZOU # 用户名
-  site: "https://frosti.saroprock.com" # 用户的网站链接
+  site: "https://kevinyuanzou-github-io.pages.dev/" # 用户的网站链接
   avatar: /profile_me.png # 用户头像路径
   sidebar: # 侧边栏配置
     social:
