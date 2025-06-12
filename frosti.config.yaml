@@ -18,7 +18,7 @@ site:
       href: / # 菜单项链接的地址
       svg: "material-symbols:home-outline-rounded"
       target: _self
-      
+
     - id: blog
       text: Blogs
       href: /blog
@@ -26,20 +26,29 @@ site:
       target: _self
       subItems:
         - id: all
-          text: All blogs
+          text: All Blogs
           href: /blog
           svg: "material-symbols:ink-pen-outline-rounded"
           target: _self
-        - id: documentation
-          text: Documentation
-          href: /blog/category/Documentation
+
+        - id: Life
+          text: Life
+          href: /blog/category/Life
           svg: "material-symbols:unknown-document-outline-rounded"
           target: _self
-        - id: examples
-          text: Examples
-          href: /blog/category/Examples
+        - id: Study
+          text: Study
+          href: /blog/category/Study
           svg: "material-symbols:deployed-code-outline"
           target: _self
+          
+        - id: Work
+          text: Work
+          href: /blog/category/Work
+          svg: "material-symbols:deployed-code-outline"
+          target: _self
+
+
         # 子菜单项配置
     - id: project
       text: Research
