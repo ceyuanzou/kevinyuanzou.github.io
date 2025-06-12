@@ -1,16 +1,14 @@
 ---
-title: Testing Mathematical Formulas in Markdown
-description: A demonstration of various mathematical formulas rendered using LaTeX within Markdown.
-pubDate: May 31 2025
+title: 3rd
+description: None
+pubDate: June 5 2025
 categories:
-  - Documentation
-  - Examples
+  - Life
 tags:
-  - Markdown
-  - LaTeX
-  - Mathematics
-badge: LaTeX
+  - MATLAB
+badge: By Kevin ZOU
 ---
+
 
 This document serves as a test for rendering mathematical formulas in Markdown using `$$` delimiters.
 
@@ -100,3 +98,4 @@ Newton's second law of motion:
 $$F = ma$$
 
 This should provide a good test of how various mathematical formulas are rendered.
+

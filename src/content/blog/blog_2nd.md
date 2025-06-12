@@ -1,16 +1,14 @@
 ---
-title: Adding Comment Systems to Frosti
-description: A comprehensive guide on how to integrate the Waline comment system into your Frosti blog
-pubDate: 04 15 2025
-image: /image/image4.jpg
+title: 2nd 
+description: None
+pubDate: June 2 2025
 categories:
-  - Documentation
+  - Work
 tags:
-  - Frosti
-  - Comments
-  - Waline
-  - Astro
+  - Python
+badge: By Kevin ZOU
 ---
+
 
 ## Introduction
 
@@ -166,3 +164,4 @@ Replace `"https://your-waline-server.vercel.app"` with your actual Waline server
 - **Comments not displaying:** Make sure your `serverURL` is correctly set and accessible.
 - **CSS issues:** Ensure that the Waline stylesheet is properly loaded.
 - **Deployment issues:** If your server is on Vercel, check the environment variables and deployment logs.
+

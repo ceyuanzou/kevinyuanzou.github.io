@@ -44,8 +44,12 @@ const socialLinks = [
 
 <hr />
 <div class="container p-0">
-  <div class="text-right text-sm text-base-content/60 italic mb-2">
-    <Icon name="ri:heart-line" class="w-4 h-4 inline-block align-text-bottom text-error" /> Thanks for reading!
+
+  <div class="flex justify-center items-center w-full my-4">
+    <span class="mr-2">
+      <Icon name="ri:heart-line" class="w-4 h-4 inline-block align-text-bottom text-error" />
+    </span>
+    Thanks for Reading!
   </div>
 
   <div class="card bg-base-200 overflow-visible">
@@ -91,36 +95,17 @@ const socialLinks = [
               </div>
             )
           }
-          <a href={url} class="flex items-center gap-1 hover:text-primary transition-colors">
+          <!-- <a href={url} class="flex items-center gap-1 hover:text-primary transition-colors">
             <Icon name="ri:links-line" class="w-4 h-4" />
-          </a>
+          </a> -->
         </div>
 
         <!-- Categories and Tags -->
         <div class="mt-4">
           <PostFilter categories={categories} tags={tags} />
-          <!-- License Info -->
-          <hr class="my-4" />
-          <p class="text-sm opacity-75"></p>
-          © {USER_NAME} |
-          <a
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-primary transition-colors"
-          >
-            CC BY-NC-SA 4.0
-          </a>
         </div>
       </div>
 
-      <!-- Share Button -->
-      <div class="flex justify-end mt-4">
-        <button class="btn btn-primary btn-outline" onclick="share_modal.showModal()">
-          {t("label.share")}
-          <Icon name="ri:share-line" class="w-5 h-5" />
-        </button>
-      </div>
     </div>
   </div>
 

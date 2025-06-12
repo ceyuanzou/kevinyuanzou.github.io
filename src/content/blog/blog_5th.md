@@ -1,15 +1,14 @@
 ---
-title: "Markdown Style Guide"
-description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
-pubDate: "Jul 01 2024"
-image: /image/image3.png
+title: 5th
+description: None
+pubDate: June 11 2025
 categories:
-  - Documentation
-  - Examples
+  - Study
 tags:
-  - Makrdown
-badge: Pin
+  - Casual notes
+badge: By Kevin ZOU
 ---
+
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
 
@@ -250,3 +249,4 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 Press <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd> to end the session.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
