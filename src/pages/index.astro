@@ -6,6 +6,8 @@ import FeatureCard from "@/components/mdx/FeatureCard.astro";
 import GitHubStats from "@/components/mdx/GitHubStats.astro";
 
 
+import BaseCard from "@/components/BaseCard.astro";
+
 ---
 
 <BaseLayout title="Home">
@@ -13,7 +15,7 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
 
     <div class="space-y-6">
       <!-- Hello Section -->
-      <section class="py-6">
+      <section class="py-4">
         <div class="flex flex-col items-center text-center">
           <h1
             class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-loose"
@@ -27,28 +29,42 @@ import GitHubStats from "@/components/mdx/GitHubStats.astro";
         </div>
       </section>
 
-      <!-- Recent Updates: -->
-      <section class="py-6">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
-          <span>Recent Updates:</span>
-        </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <FeatureCard
-            title="Responsive Design"
-            description="Fully responsive design that looks great on all devices from mobile to desktop."
-            icon="lucide:smartphone"
-            color="oklch(0.7 0.2 30)"
-          />
-        </div>
-      </section>
 
-      <!-- Highlight Blogs -->
-      <section class="py-6">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
-          <span>Highlight Blogs:</span>
-        </h2>
+
   </MainCard>
+
 </BaseLayout>
+
+
+<BaseCard>
+  <!-- Recent Updates: -->
+  <section class="py-2">
+    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+      <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
+      <span>Recent Updates:</span>
+    </h2>
+
+    <p>
+    Here is the Recent Blog 1.<br />
+    Here is the Recent Blog 2.<br />
+    Here is the Recent Blog 3.
+    </p>
+  </section>
+</BaseCard>
+
+
+<BaseCard>
+  <!-- Highlight Blogs -->
+  <section class="py-6">
+    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+      <Icon name="lucide:star" class="w-6 h-6 text-yellow-400" />
+      <span>Highlight Blogs:</span>
+    </h2>
+    <p>
+    Here is the Highlight Blog 1.<br />
+    Here is the Highlight Blog 2.<br />
+    Here is the Highlight Blog 3.
+    </p>
+  </section>
+</BaseCard>
