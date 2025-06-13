@@ -1,5 +1,5 @@
 ---
-title: Preview Web Contents Locally 本地实时预览
+title: Preview Webpage Contents Locally 本地实时预览
 description: To preview the contents of the webpage in local computer.
 pubDate: June 12 2025
 categories:

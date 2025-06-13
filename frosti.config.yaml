@@ -50,9 +50,9 @@ site:
 
 
         # 子菜单项配置
-    - id: project
+    - id: research
       text: Research
-      href: /project
+      href: /research
       svg: "material-symbols:code-blocks-outline"
       target: _self
 
