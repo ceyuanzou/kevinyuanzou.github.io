@@ -36,6 +36,7 @@ site:
           href: /blog/category/Life
           svg: "material-symbols:deployed-code-outline"
           target: _self
+          
         - id: Study
           text: Study
           href: /blog/category/Study
