@@ -1,35 +1,41 @@
 ---
-import type { Post } from "@interfaces/data";
+import type { CollectionEntry } from "astro:content";
 import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
 import CardGroup from "@components/temple/CardGroup.astro";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
 
-import { getAllPosts } from "@utils/blogUtils";
+// 1. 指定标签（如果需要按标签筛选）
+const tagName = "Research"; // 改成你要的标签，或用 Astro.params.tag
 
-// 获取所有博文
-const allBlogsRaw = await getAllPosts();
+// 2. 获取所有文章
+const posts: CollectionEntry<"blog">[] = await getCollection("blog");
 
-const tag = "Research";
-// 只筛选带有 Research 标签的博客
-const blogs: Post[] = allBlogsRaw
-  .filter(blog => blog.data.tags && blog.data.tags.includes(tag));
+// 3. 为每个文章执行 render，提取 remarkPluginFrontmatter
+const postsWithRT = await Promise.all(
+  posts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await post.render();
+    return {
+      ...post,
+      remarkPluginFrontmatter,
+    };
+  })
+);
 
-// // 计算字数和阅读时间辅助函数
-// function getReadingTime(text: string): string {
-//   const words = text.trim().split(/\s+/).length;
-//   const minutes = Math.max(1, Math.round(words / 200));
-//   return `${minutes} min`;
-// }
+// 4. 按标签筛选（如不需要可以省略）
+const filteredPosts = postsWithRT.filter(
+  (post) => post.data.tags && post.data.tags.includes(tagName)
+);
 
-// function getCharCount(text: string): number {
-//   return text.replace(/\s/g, '').length;
-// }
+const totalPosts = filteredPosts.length;
 ---
 
 <BaseLayout title="Research">
+
+  <!-- 欢迎卡片 -->
   <BaseCard>
     <div class="space-y-6">
       <section class="py-4">
@@ -46,23 +52,34 @@ const blogs: Post[] = allBlogsRaw
       </section>
     </div>
   </BaseCard>
-
-  <CardGroup cols="1" gap="6">
-    {
-      blogs.map((blog) => (
-        <PostCard
-          title={blog.data.title}
-          image={blog.data.image}
-          description={blog.data.description}
-          url={"/blog/" + blog.slug}
-          pubDate={blog.data.pubDate}
-          badge={blog.data.badge}
-          categories={blog.data.categories}
-          tags={blog.data.tags}
-          word="0"         // 字符数
-          time="0"      // 阅读时长
-        />
-      ))
-    }
-  </CardGroup>
+  
+  
+  
+  {
+    totalPosts > 0 ? (
+      <CardGroup cols="1" gap="6">
+        {
+          filteredPosts.map((blog) => (
+            <PostCard
+              title={blog.data.title}
+              image={blog.data.image}
+              description={blog.data.description}
+              url={"/blog/" + blog.slug}
+              pubDate={blog.data.pubDate}
+              badge={blog.data.badge}
+              categories={blog.data.categories}
+              tags={blog.data.tags}
+              word={blog.remarkPluginFrontmatter?.totalCharCount}
+              time={blog.remarkPluginFrontmatter?.readingTime}
+            />
+          ))
+        }
+      </CardGroup>
+    ) : (
+      <div class="empty-state py-12 text-center">
+        <Icon name="ri:emotion-sad-line" class="empty-icon mx-auto mb-2 w-10 h-10 text-accent" />
+        <p class="empty-text text-lg">{t("label.noPosts")}</p>
+      </div>
+    )
+  }
 </BaseLayout>
