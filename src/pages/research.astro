@@ -11,22 +11,10 @@ import { getAllPosts } from "@utils/blogUtils";
 
 const allBlogsRaw = await getAllPosts();
 
-// 转为 Post 类型数组
-const allBlogs: Post[] = allBlogsRaw.map(blog => ({
-  title: blog.data.title,
-  description: blog.data.description,
-  pubDate: blog.data.pubDate,
-  image: blog.data.image,
-  badge: blog.data.badge,
-  categories: blog.data.categories,
-  tags: blog.data.tags,
-  slug: blog.slug,
-  word: blog.remarkPluginFrontmatter?.totalCharCount,
-  time: blog.remarkPluginFrontmatter?.readingTime,
-}));
-
 const tag = "Research";
-const blogs = allBlogs.filter(blog => blog.tags && blog.tags.includes(tag));
+const blogs: Post[] = allBlogsRaw.filter(
+  blog => blog.data.tags && blog.data.tags.includes(tag)
+);
 ---
 
 <BaseLayout title="Research">
@@ -51,16 +39,16 @@ const blogs = allBlogs.filter(blog => blog.tags && blog.tags.includes(tag));
     {
       blogs.map((blog) => (
         <PostCard
-          title={blog.title}
-          image={blog.image}
-          description={blog.description}
+          title={blog.data.title}
+          image={blog.data.image}
+          description={blog.data.description}
           url={"/blog/" + blog.slug}
-          pubDate={blog.pubDate}
-          badge={blog.badge}
-          categories={blog.categories}
-          tags={blog.tags}
-          word={blog.word}
-          time={blog.time}
+          pubDate={blog.data.pubDate}
+          badge={blog.data.badge}
+          categories={blog.data.categories}
+          tags={blog.data.tags}
+          word={blog.remarkPluginFrontmatter?.totalCharCount}
+          time={blog.remarkPluginFrontmatter?.readingTime}
         />
       ))
     }
