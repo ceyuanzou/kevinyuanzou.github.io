@@ -7,19 +7,29 @@ import CardGroup from "@components/temple/CardGroup.astro";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
 
-// 假设你有一个函数可以获取所有博客
-import { getAllPosts } from "@utils/blogUtils"; // 请根据你的项目实际路径调整
+import { getAllPosts } from "@utils/blogUtils";
 
-// 这里获取全部博客（注意：不要加类型断言，交给类型推断）
-const allBlogs = await getAllPosts();
+const allBlogsRaw = await getAllPosts();
 
-// 只保留含有 Markdown 标签的博客
+// 转为 Post 类型数组
+const allBlogs: Post[] = allBlogsRaw.map(blog => ({
+  title: blog.data.title,
+  description: blog.data.description,
+  pubDate: blog.data.pubDate,
+  image: blog.data.image,
+  badge: blog.data.badge,
+  categories: blog.data.categories,
+  tags: blog.data.tags,
+  slug: blog.slug,
+  word: blog.remarkPluginFrontmatter?.totalCharCount,
+  time: blog.remarkPluginFrontmatter?.readingTime,
+}));
+
 const tag = "Research";
-const blogs = allBlogs.filter(blog => blog.data.tags && blog.data.tags.includes(tag));
+const blogs = allBlogs.filter(blog => blog.tags && blog.tags.includes(tag));
 ---
 
 <BaseLayout title="Research">
-  <!-- 欢迎卡片 -->
   <BaseCard>
     <div class="space-y-6">
       <section class="py-4">
@@ -41,19 +51,18 @@ const blogs = allBlogs.filter(blog => blog.data.tags && blog.data.tags.includes(
     {
       blogs.map((blog) => (
         <PostCard
-          title={blog.data.title}
-          image={blog.data.image}
-          description={blog.data.description}
+          title={blog.title}
+          image={blog.image}
+          description={blog.description}
           url={"/blog/" + blog.slug}
-          pubDate={blog.data.pubDate}
-          badge={blog.data.badge}
-          categories={blog.data.categories}
-          tags={blog.data.tags}
-          word={blog.remarkPluginFrontmatter?.totalCharCount}
-          time={blog.remarkPluginFrontmatter?.readingTime}
+          pubDate={blog.pubDate}
+          badge={blog.badge}
+          categories={blog.categories}
+          tags={blog.tags}
+          word={blog.word}
+          time={blog.time}
         />
       ))
     }
   </CardGroup>
-  {/* 不需要分页组件 */}
 </BaseLayout>
