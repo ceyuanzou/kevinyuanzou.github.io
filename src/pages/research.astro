@@ -10,16 +10,15 @@ import { Icon } from "astro-icon/components";
 // 假设你有一个函数可以获取所有博客
 import { getAllPosts } from "@utils/blogUtils"; // 请根据你的项目实际路径调整
 
-// 这里获取全部博客
-const allBlogs: Post[] = await getAllPosts();
+// 这里获取全部博客（注意：不要加类型断言，交给类型推断）
+const allBlogs = await getAllPosts();
 
 // 只保留含有 Markdown 标签的博客
 const tag = "Research";
-
 const blogs = allBlogs.filter(blog => blog.data.tags && blog.data.tags.includes(tag));
 ---
 
-<BaseLayout title= "Research">
+<BaseLayout title="Research">
   <!-- 欢迎卡片 -->
   <BaseCard>
     <div class="space-y-6">
@@ -37,11 +36,10 @@ const blogs = allBlogs.filter(blog => blog.data.tags && blog.data.tags.includes(
       </section>
     </div>
   </BaseCard>
-  
-  
+
   <CardGroup cols="1" gap="6">
     {
-      blogs.map((blog: Post) => (
+      blogs.map((blog) => (
         <PostCard
           title={blog.data.title}
           image={blog.data.image}
