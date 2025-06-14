@@ -1,42 +1,25 @@
 ---
+import type { Post } from "@interfaces/data";
+import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BaseCard from "@components/BaseCard.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
-import dayjs from "@utils/dayjs";
-import { DATE_FORMAT } from "@config";
-import { getAllPosts, sortPostsByDate, getPostsByYearAndMonth } from "@utils/blogUtils";
 
-// 获取所有博客文章
-const allPosts = await getAllPosts();
+// 假设你有一个函数可以获取所有博客
+import { getAllPosts } from "@utils/blogUtils"; // 请根据你的项目实际路径调整
 
-// 三个分类：你可以按标题、tag或category来区分
-const experimentalTitles = ['实验一', '实验二', 'Preview Webpage Contents Locally 本地实时预览'];
-const simulationTitles = ['Numerical Sim -- A', 'Numerical Sim -- B', 'Markdown Syntax'];
-const imageAnalysisTitles = ['图像分析一', '图像分析二'];
+// 这里获取全部博客
+const allBlogs: Post[] = await getAllPosts();
 
-// 分别筛选
-const experimentalPosts = allPosts.filter(post => experimentalTitles.includes(post.data.title));
-const simulationPosts = allPosts.filter(post => simulationTitles.includes(post.data.title));
-const imageAnalysisPosts = allPosts.filter(post => imageAnalysisTitles.includes(post.data.title));
+// 只保留含有 Markdown 标签的博客
+const tag = "Research";
 
-// 排序
-const sortedExperimental = sortPostsByDate(experimentalPosts);
-const sortedSimulation = sortPostsByDate(simulationPosts);
-const sortedImageAnalysis = sortPostsByDate(imageAnalysisPosts);
-
-// 按年/月分组
-const experimentalByDate = getPostsByYearAndMonth(sortedExperimental);
-const simulationByDate = getPostsByYearAndMonth(sortedSimulation);
-const imageAnalysisByDate = getPostsByYearAndMonth(sortedImageAnalysis);
-
-const experimentalYears = Array.from(experimentalByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
-const simulationYears = Array.from(simulationByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
-const imageAnalysisYears = Array.from(imageAnalysisByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
+const blogs = allBlogs.filter(blog => blog.data.tags && blog.data.tags.includes(tag));
 ---
 
-<BaseLayout title="Research">
-
+<BaseLayout title= "Research">
   <!-- 欢迎卡片 -->
   <BaseCard>
     <div class="space-y-6">
@@ -54,125 +37,25 @@ const imageAnalysisYears = Array.from(imageAnalysisByDate.keys()).sort((a, b) =>
       </section>
     </div>
   </BaseCard>
-
-  <!-- Experimental Investigations -->
-  <BaseCard>
-    <h2 class="text-xl md:text-2xl font-bold mb-2 flex items-center gap-2">
-      Experimental Investigations
-      <span class="text-2xl">⭐</span>
-    </h2>
-    <div class="archives-container">
-      {experimentalYears.length > 0 ? (
-        <div class="archives-timeline">
-          {experimentalYears.map((year) => (
-            <div class="timeline-year">
-              <div class="year-content p-0 m-0">
-                {Array.from(experimentalByDate.get(year)!.entries())
-                  .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-                  .map(([, posts]) => (
-                    <ul class="archive-posts p-0 m-0" style="margin-top: 0; padding-top: 0;">
-                      {posts.map((post) => (
-                        <li class="archive-item">
-                          <a href={`/blog/${post.slug}`} class="archive-card">
-                            <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
-                            <h4 class="archive-title">{post.data.title}</h4>
-                            {post.data.description && <p class="archive-description">{post.data.description}</p>}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-state">
-          <Icon name="ri:emotion-sad-line" class="empty-icon" />
-          <p class="empty-text">None</p>
-        </div>
-      )}
-    </div>
-  </BaseCard>
   
-  <!-- Numerical Simulations -->
-  <BaseCard>
-    <h2 class="text-xl md:text-2xl font-bold mb-2 flex items-center gap-2">
-      Numerical simulations
-      <span class="text-2xl">⭐</span>
-    </h2>
-    <div class="archives-container">
-      {simulationYears.length > 0 ? (
-        <div class="archives-timeline">
-          {simulationYears.map((year) => (
-            <div class="timeline-year">
-              <div class="year-content p-0 m-0">
-                {Array.from(simulationByDate.get(year)!.entries())
-                  .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-                  .map(([, posts]) => (
-                    <ul class="archive-posts p-0 m-0" style="margin-top: 0; padding-top: 0;">
-                      {posts.map((post) => (
-                        <li class="archive-item">
-                          <a href={`/blog/${post.slug}`} class="archive-card">
-                            <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
-                            <h4 class="archive-title">{post.data.title}</h4>
-                            {post.data.description && <p class="archive-description">{post.data.description}</p>}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-state">
-          <Icon name="ri:emotion-sad-line" class="empty-icon" />
-          <p class="empty-text">None</p>
-        </div>
-      )}
-    </div>
-  </BaseCard>
-
-  <!-- Image Analysis -->
-  <BaseCard>
-    <h2 class="text-xl md:text-2xl font-bold mb-2 flex items-center gap-2">
-      Image Analysis
-      <span class="text-2xl">⭐</span>
-    </h2>
-    <div class="archives-container">
-      {imageAnalysisYears.length > 0 ? (
-        <div class="archives-timeline">
-          {imageAnalysisYears.map((year) => (
-            <div class="timeline-year">
-              <div class="year-content p-0 m-0">
-                {Array.from(imageAnalysisByDate.get(year)!.entries())
-                  .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-                  .map(([, posts]) => (
-                    <ul class="archive-posts p-0 m-0" style="margin-top: 0; padding-top: 0;">
-                      {posts.map((post) => (
-                        <li class="archive-item">
-                          <a href={`/blog/${post.slug}`} class="archive-card">
-                            <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
-                            <h4 class="archive-title">{post.data.title}</h4>
-                            {post.data.description && <p class="archive-description">{post.data.description}</p>}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div class="empty-state">
-          <Icon name="ri:emotion-sad-line" class="empty-icon" />
-          <p class="empty-text">None</p>
-        </div>
-      )}
-    </div>
-  </BaseCard>
-
+  
+  <CardGroup cols="1" gap="6">
+    {
+      blogs.map((blog: Post) => (
+        <PostCard
+          title={blog.data.title}
+          image={blog.data.image}
+          description={blog.data.description}
+          url={"/blog/" + blog.slug}
+          pubDate={blog.data.pubDate}
+          badge={blog.data.badge}
+          categories={blog.data.categories}
+          tags={blog.data.tags}
+          word={blog.remarkPluginFrontmatter?.totalCharCount}
+          time={blog.remarkPluginFrontmatter?.readingTime}
+        />
+      ))
+    }
+  </CardGroup>
+  {/* 不需要分页组件 */}
 </BaseLayout>

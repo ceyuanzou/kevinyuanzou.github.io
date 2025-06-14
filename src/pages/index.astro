@@ -12,12 +12,12 @@ const allPosts = await getAllPosts();
 
 // 最新3篇博客
 const sortedPosts = sortPostsByDate(allPosts);
-const recentPosts = sortedPosts.slice(0, 3);
+const recentPosts = sortedPosts.slice(0, 5);
 const recentPostsByDate = getPostsByYearAndMonth(recentPosts);
 const recentYears = Array.from(recentPostsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
 
 // 经典博客（请替换标题数组为你的经典文章标题）
-const classicTitles = ['Preview Webpage Contents Locally 本地实时预览', 'Markdown Syntax', 'First Blog!'];
+const classicTitles = ['Insert a Image in a Markdown File', 'Markdown Syntax', 'First Blog!'];
 const classicPosts = allPosts.filter(
   (post) => classicTitles.includes(post.data.title)
 );
