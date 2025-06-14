@@ -13,13 +13,9 @@ import { getAllPosts } from "@utils/blogUtils";
 const allBlogsRaw = await getAllPosts();
 
 const tag = "Research";
-// 只筛选带有 Research 标签的博客，并补全 remarkPluginFrontmatter 字段
+// 只筛选带有 Research 标签的博客
 const blogs: Post[] = allBlogsRaw
-  .filter(blog => blog.data.tags && blog.data.tags.includes(tag))
-  .map(blog => ({
-    ...blog,
-    remarkPluginFrontmatter: blog.remarkPluginFrontmatter ?? {}, // 补全关键字段
-  }));
+  .filter(blog => blog.data.tags && blog.data.tags.includes(tag));
 
 // 计算字数和阅读时间辅助函数
 function getReadingTime(text: string): string {
