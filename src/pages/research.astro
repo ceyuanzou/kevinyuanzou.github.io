@@ -17,16 +17,16 @@ const tag = "Research";
 const blogs: Post[] = allBlogsRaw
   .filter(blog => blog.data.tags && blog.data.tags.includes(tag));
 
-// 计算字数和阅读时间辅助函数
-function getReadingTime(text: string): string {
-  const words = text.trim().split(/\s+/).length;
-  const minutes = Math.max(1, Math.round(words / 200));
-  return `${minutes} min`;
-}
+// // 计算字数和阅读时间辅助函数
+// function getReadingTime(text: string): string {
+//   const words = text.trim().split(/\s+/).length;
+//   const minutes = Math.max(1, Math.round(words / 200));
+//   return `${minutes} min`;
+// }
 
-function getCharCount(text: string): number {
-  return text.replace(/\s/g, '').length;
-}
+// function getCharCount(text: string): number {
+//   return text.replace(/\s/g, '').length;
+// }
 ---
 
 <BaseLayout title="Research">
@@ -59,8 +59,8 @@ function getCharCount(text: string): number {
           badge={blog.data.badge}
           categories={blog.data.categories}
           tags={blog.data.tags}
-          word={getCharCount(blog.body)}         // 字符数
-          time={getReadingTime(blog.body)}       // 阅读时长
+          word="0"         // 字符数
+          time="0"      // 阅读时长
         />
       ))
     }
