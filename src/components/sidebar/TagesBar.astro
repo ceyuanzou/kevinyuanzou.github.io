@@ -1,0 +1,54 @@
+---
+import Card from "../temple/Card.astro";
+import { t } from "@config";
+import { Icon } from "astro-icon/components";
+import { getAllPosts, getTagsWithCount, getTagColorClass, getTagFontSizeforSiebar } from "@utils/blogUtils";
+
+// 获取所有博客文章
+const allPosts = await getAllPosts();
+
+// 提取所有标签并统计其出现次数
+const tagMap = getTagsWithCount(allPosts);
+
+// 转换为数组并按计数排序（降序）
+const tagEntries = Array.from(tagMap.entries());
+tagEntries.sort((a, b) => b[1] - a[1]);
+
+// 找到最大和最小计数，用于缩放
+const maxCount = Math.max(...tagMap.values());
+const minCount = Math.min(...tagMap.values());
+
+// 计算总标签数
+const totalTags = tagMap.size;
+---
+
+<Card>
+  <div class="tags-container">
+    {
+      tagEntries.length > 0 ? (
+        <div class="tags-cloud">
+          {tagEntries.map(([tag, count], index) => (
+            <a
+              href={`/blog/tag/${tag}`}
+              class={`tags-item ${getTagColorClass(count, maxCount)}`}
+              style={`font-size: ${getTagFontSizeforSiebar(count, maxCount, minCount)}rem;`}
+              data-count={count}
+              data-index={index}
+            >
+              <span class="tags-content">
+                <Icon name="lucide:tag" />
+                <span class="tags-text">{tag}</span>
+                <span class="tags-count">{count}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <Icon name="ri:emotion-sad-line" class="empty-icon" />
+          <p class="empty-text">{t("label.noTag")}</p>
+        </div>
+      )
+    }
+  </div>
+</Card>
