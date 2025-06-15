@@ -193,12 +193,6 @@ export function getTagFontSize(count: number, max: number, min: number): number 
   // 映射到 0.9rem 到 2rem 之间的字体大小
   return 0.9 + normalized * 1.1;
 }
-export function getTagFontSizeforSiebar(count: number, max: number, min: number): number {
-  // 将计数值规范化到 0-1 之间
-  const normalized = (count - min) / (max - min || 1);
-  // 映射到 0.9rem 到 2rem 之间的字体大小
-  return 0.6 + normalized;
-}
 
 /**
  * 生成分类的颜色类

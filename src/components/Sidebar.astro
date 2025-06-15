@@ -3,7 +3,6 @@ import ProfileBar from "./sidebar/ProfileBar.astro";
 import ToolBar from "./sidebar/ToolBar.astro";
 import TOCBar from "./sidebar/TOCBar.astro";
 import SearchBar from "./sidebar/SearchBar.astro";
-import TagesBar from "./sidebar/TagesBar.astro";
 
 interface Props {
   headings?: Array<{
@@ -18,22 +17,15 @@ interface Props {
 const { headings = [], showTOC = true } = Astro.props as Props;
 ---
 
-<div class="relative" style="height: 1px;"></div>
+<div class="relative mb-4">
+  <ProfileBar />
+</div>
+
+<div class="relative mb-4">
+  <ToolBar />
+  <TOCBar headings={headings} showTOC={showTOC} />
+</div>
+
 <div class="md:sticky md:top-4">
-  <div class="mb-4">
-    <ProfileBar />
-  </div>
-
-  <div class="mb-4">
-    <SearchBar />
-  </div>
-
-  <div class="mb-4">
-    <ToolBar />
-    <TOCBar headings={headings} showTOC={showTOC} />
-  </div>
-
-  <div>
-    <TagesBar />
-  </div>
+  <SearchBar />
 </div>

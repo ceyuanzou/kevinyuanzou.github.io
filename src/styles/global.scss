@@ -325,9 +325,6 @@ code {
   &-cloud {
     @apply flex flex-wrap justify-center gap-3 min-h-[200px];
   }
-  &-cloud-sidebar {
-    @apply flex flex-wrap justify-center gap-2 min-h-[150px];
-  }
 
   &-item {
     @apply relative opacity-0 translate-y-2 inline-flex items-center gap-2 rounded-full;
@@ -537,9 +534,6 @@ code {
       @apply w-4 h-4;
     }
   }
-  .toc-container {
-    display: none;
-  }
 
   // Tags responsive
   .tags-cloud {
@@ -573,9 +567,6 @@ code {
 }
 
 @media (max-width: 480px) {
-  .toc-container {
-    display: none;
-  }
   .blog-container {
     @apply p-2;
   }

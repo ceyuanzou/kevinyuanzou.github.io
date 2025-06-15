@@ -17,14 +17,17 @@ const recentPostsByDate = getPostsByYearAndMonth(recentPosts);
 const recentYears = Array.from(recentPostsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
 
 // 经典博客（请替换标题数组为你的经典文章标题）
-const classicTitles = ["Insert a Image in a Markdown File", "Markdown Syntax", "First Blog!"];
-const classicPosts = allPosts.filter((post) => classicTitles.includes(post.data.title));
+const classicTitles = ['Insert a Image in a Markdown File', 'Markdown Syntax', 'First Blog!'];
+const classicPosts = allPosts.filter(
+  (post) => classicTitles.includes(post.data.title)
+);
 const sortedClassicPosts = sortPostsByDate(classicPosts);
 const classicPostsByDate = getPostsByYearAndMonth(sortedClassicPosts);
 const classicYears = Array.from(classicPostsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
 <BaseLayout title="Homepage">
+
   <!-- 欢迎卡片 -->
   <BaseCard>
     <div class="space-y-6">
@@ -50,38 +53,36 @@ const classicYears = Array.from(classicPostsByDate.keys()).sort((a, b) => parseI
       <span class="text-2xl">⏰</span>
     </h2>
     <div class="archives-container">
-      {
-        recentYears.length > 0 ? (
-          <div class="archives-timeline">
-            {recentYears.map((year) => (
-              <div class="timeline-year">
-                <div class="year-content p-0 m-0">
-                  {Array.from(recentPostsByDate.get(year)!.entries())
-                    .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-                    .map(([, posts]) => (
-                      <ul class="archive-posts p-0 m-0" style="margin-top:0;padding-top:0;">
-                        {posts.map((post) => (
-                          <li class="archive-item">
-                            <a href={`/blog/${post.slug}`} class="archive-card">
-                              <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
-                              <h4 class="archive-title">{post.data.title}</h4>
-                              {post.data.description && <p class="archive-description">{post.data.description}</p>}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    ))}
-                </div>
+      {recentYears.length > 0 ? (
+        <div class="archives-timeline">
+          {recentYears.map((year) => (
+            <div class="timeline-year">
+              <div class="year-content p-0 m-0">
+                {Array.from(recentPostsByDate.get(year)!.entries())
+                  .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+                  .map(([, posts]) => (
+                    <ul class="archive-posts p-0 m-0" style="margin-top:0;padding-top:0;">
+                      {posts.map((post) => (
+                        <li class="archive-item">
+                          <a href={`/blog/${post.slug}`} class="archive-card">
+                            <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
+                            <h4 class="archive-title">{post.data.title}</h4>
+                            {post.data.description && <p class="archive-description">{post.data.description}</p>}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
               </div>
-            ))}
-          </div>
-        ) : (
-          <div class="empty-state">
-            <Icon name="ri:emotion-sad-line" class="empty-icon" />
-            <p class="empty-text">{t("label.noPosts")}</p>
-          </div>
-        )
-      }
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <Icon name="ri:emotion-sad-line" class="empty-icon" />
+          <p class="empty-text">{t("label.noPosts")}</p>
+        </div>
+      )}
     </div>
   </BaseCard>
 
@@ -92,38 +93,37 @@ const classicYears = Array.from(classicPostsByDate.keys()).sort((a, b) => parseI
       <span class="text-2xl">⭐</span>
     </h2>
     <div class="archives-container">
-      {
-        classicYears.length > 0 ? (
-          <div class="archives-timeline">
-            {classicYears.map((year) => (
-              <div class="timeline-year">
-                <div class="year-content p-0 m-0">
-                  {Array.from(classicPostsByDate.get(year)!.entries())
-                    .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
-                    .map(([, posts]) => (
-                      <ul class="archive-posts p-0 m-0" style="margin-top: 0; padding-top: 0;">
-                        {posts.map((post) => (
-                          <li class="archive-item">
-                            <a href={`/blog/${post.slug}`} class="archive-card">
-                              <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
-                              <h4 class="archive-title">{post.data.title}</h4>
-                              {post.data.description && <p class="archive-description">{post.data.description}</p>}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    ))}
-                </div>
+      {classicYears.length > 0 ? (
+        <div class="archives-timeline">
+          {classicYears.map((year) => (
+            <div class="timeline-year">
+              <div class="year-content p-0 m-0">
+                {Array.from(classicPostsByDate.get(year)!.entries())
+                  .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+                  .map(([, posts]) => (
+                    <ul class="archive-posts p-0 m-0" style="margin-top: 0; padding-top: 0;">
+                      {posts.map((post) => (
+                        <li class="archive-item">
+                          <a href={`/blog/${post.slug}`} class="archive-card">
+                            <time class="archive-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</time>
+                            <h4 class="archive-title">{post.data.title}</h4>
+                            {post.data.description && <p class="archive-description">{post.data.description}</p>}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
               </div>
-            ))}
-          </div>
-        ) : (
-          <div class="empty-state">
-            <Icon name="ri:emotion-sad-line" class="empty-icon" />
-            <p class="empty-text">暂无经典博客</p>
-          </div>
-        )
-      }
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <Icon name="ri:emotion-sad-line" class="empty-icon" />
+          <p class="empty-text">暂无经典博客</p>
+        </div>
+      )}
     </div>
   </BaseCard>
+
 </BaseLayout>
