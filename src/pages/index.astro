@@ -17,7 +17,7 @@ const recentPostsByDate = getPostsByYearAndMonth(recentPosts);
 const recentYears = Array.from(recentPostsByDate.keys()).sort((a, b) => parseInt(b) - parseInt(a));
 
 // 经典博客（请替换标题数组为你的经典文章标题）
-const classicTitles = ['Insert a Image in a Markdown File', 'Markdown Syntax', 'First Blog!'];
+const classicTitles = ['Insert an Image in a Markdown File', 'Markdown Syntax', 'First Blog!'];
 const classicPosts = allPosts.filter(
   (post) => classicTitles.includes(post.data.title)
 );
