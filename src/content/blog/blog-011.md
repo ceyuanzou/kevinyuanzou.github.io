@@ -10,4 +10,4 @@ tags:
 badge: By Kevin ZOU
 ---
 
-## Ctrl + P
+## Ctrl + P: Go to one file
