@@ -1,0 +1,67 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import MainCard from "@/components/MainCard.astro";
+import FeatureCard from "@/components/mdx/FeatureCard.astro";
+import GitHubStats from "@/components/mdx/GitHubStats.astro";
+
+
+import BaseCard from "@/components/BaseCard.astro";
+
+---
+
+<BaseLayout title="Home">
+  <MainCard>
+
+    <div class="space-y-6">
+      <!-- Hello Section -->
+      <section class="py-4">
+        <div class="flex flex-col items-center text-center">
+          <h1
+            class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-loose"
+          >
+            Hello! Welcome to Kevin ZOU's Blogs!
+          </h1>
+          <p class="text-xl text-base-content/80 max-w-3xl">
+            Here, I will share my learning, experiences, and thinking!
+          </p>
+
+        </div>
+      </section>
+
+  </MainCard>
+
+</BaseLayout>
+
+
+<BaseCard>
+  <!-- Recent Updates: -->
+  <section class="py-2">
+    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+      <Icon name="lucide:sparkles" class="w-6 h-6 text-primary" />
+      <span>Recent Updates:</span>
+    </h2>
+
+    <p>
+    Here is the Recent Blog 1.<br />
+    Here is the Recent Blog 2.<br />
+    Here is the Recent Blog 3.
+    </p>
+  </section>
+</BaseCard>
+
+
+<BaseCard>
+  <!-- Highlight Blogs -->
+  <section class="py-6">
+    <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+      <Icon name="lucide:star" class="w-6 h-6 text-yellow-400" />
+      <span>Highlight Blogs:</span>
+    </h2>
+    <p>
+    Here is the Highlight Blog 1.<br />
+    Here is the Highlight Blog 2.<br />
+    Here is the Highlight Blog 3.
+    </p>
+  </section>
+</BaseCard>

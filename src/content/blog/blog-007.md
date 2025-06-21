@@ -20,7 +20,6 @@ badge: By Kevin ZOU
 If we input the codes as follows:
 ```
 ![text](/public/image/image1.jpg)
-
 ```
 Sure, we can also add a caption below the photo. <br>
 And, we can see an photo like this:  

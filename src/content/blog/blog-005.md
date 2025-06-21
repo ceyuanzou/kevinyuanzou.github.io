@@ -1,7 +1,7 @@
 ---
-title: Open a Folder Using VS Code
+title: Open a Folder or File Using VS Code
 description: To fast open a folder with VS Code.
-pubDate: June 14 2025
+pubDate: June 20 2025
 categories:
   - Study
 tags:
