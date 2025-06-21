@@ -17,7 +17,7 @@ badge: By Kevin ZOU
 
 
 like this:
-![cmd interface](</public/image/cmd.png>)
+![cmd interface](</image/cmd.png>)
 
 
 
