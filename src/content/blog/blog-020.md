@@ -1,6 +1,6 @@
 ---
 title: 成败，输赢, 进退，是非，善恶...
-description: 看似对立的观点之间有根本的界限
+description: 看似对立的观点之间没有根本的界限！
 pubDate: June 18 2025
 categories:
   - Study

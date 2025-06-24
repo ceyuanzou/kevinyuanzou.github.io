@@ -1,5 +1,5 @@
 ---
-title: Data Analysis >> Box Plot
+title: "Data Analysis: Box Plot"
 description: We will learn more about box plot here.
 pubDate: June 20 2025
 categories:
@@ -10,8 +10,7 @@ tags:
 badge: By Kevin ZOU
 ---
 
-
-![Box Plot](<../../../public/image/box plot.png>)
+![Box Plot](</image/box plot.png>)
 
 ## To Know Box Plot
 Box Plot (箱线图)  

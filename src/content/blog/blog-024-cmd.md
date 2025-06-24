@@ -13,10 +13,7 @@ badge: By Kevin ZOU
 - open the folder in File Explorer
 - go to click the address bar at the top (or press `Ctrl + L`)
 - type `cmd` and press `Enter`
-- then, we will see the dark interface of Command Prompt in that folder.
-
-
-like this:
+- then, we will see the dark interface of Command Prompt in that folder, like this:
 ![cmd interface](</image/cmd.png>)
 
 
