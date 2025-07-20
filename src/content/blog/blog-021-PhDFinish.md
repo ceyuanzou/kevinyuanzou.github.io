@@ -5,7 +5,7 @@ pubDate: June 18 2025
 categories:
   - Study
 tags:
-  - Thought
+  - Thoughts
 badge: By Kevin ZOU
 ---
 
